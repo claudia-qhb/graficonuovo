@@ -1,5 +1,3 @@
-# graficonuovo
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
