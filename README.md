@@ -13,6 +13,8 @@
     <label>Strike Price: <input type="number" id="strikePrice" value="100"></label>
     <label>Premio: <input type="number" id="premio" value="10"></label>
     <label>Prezzo Sottostante: <input type="number" id="prezzoSottostante" value="100"></label>
+    <label>Scadenza (gg): <input type="number" id="scadenza" value="30"></label>
+    <label>Quantità: <input type="number" id="quantita" value="1"></label>
     <label>Posizione (positivo = long, negativo = short): 
         <input type="number" id="posizione" value="1">
     </label>
@@ -27,6 +29,8 @@
             const strike = parseFloat(document.getElementById("strikePrice").value);
             const premio = parseFloat(document.getElementById("premio").value);
             const prezzoAttuale = parseFloat(document.getElementById("prezzoSottostante").value);
+            const scadenza = parseInt(document.getElementById("scadenza").value);
+            const quantita = parseInt(document.getElementById("quantita").value);
             const posizione = parseInt(document.getElementById("posizione").value);
 
             const minPrice = strike - 50;
@@ -39,8 +43,8 @@
             for (let price = minPrice; price <= maxPrice; price += step) {
                 xValues.push(price);
 
-                let callProfit = posizione * (Math.max(price - strike, 0) - premio);
-                let putProfit = posizione * (Math.max(strike - price, 0) - premio);
+                let callProfit = quantita * posizione * (Math.max(price - strike, 0) - premio);
+                let putProfit = quantita * posizione * (Math.max(strike - price, 0) - premio);
 
                 payoffCall.push(callProfit);
                 payoffPut.push(putProfit);
